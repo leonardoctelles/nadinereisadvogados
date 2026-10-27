@@ -1,760 +1,142 @@
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nadine Reis Advocacia | OAB/MG 254.893</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Nadine Reis | Advocacia & Consultoria Jurídica</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            400: '#E2C281',
-                            500: '#C5A059',
-                            600: '#A37F3C',
-                        },
-                        dark: {
-                            900: '#0B0D0E',
-                            800: '#121518',
-                            700: '#1B1F24',
-                            600: '#262C34'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Cinzel', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Custom Smooth Scroll & Styles */
-        html {
+        :root {
+            --bg-dark: #070809;
+            --bg-card: #0F1115;
+            --gold-primary: #C5A059;
+            --gold-hover: #E0B86C;
+            --text-light: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border-color: rgba(197, 160, 89, 0.2);
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             scroll-behavior: smooth;
         }
-        
-        /* Black Piano Texture & Gradient background */
-        .bg-piano {
-            background-color: #0B0D0E;
-            background-image: 
-                radial-gradient(circle at 80% 20%, rgba(30, 35, 42, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(20, 24, 28, 0.6) 0%, transparent 60%);
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Subtle metallic texture */
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(38, 44, 52, 0.4) 0%, rgba(18, 21, 24, 0.7) 100%);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(197, 160, 89, 0.15);
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(7, 8, 9, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
         }
 
-        .glass-card {
-            background: rgba(18, 21, 24, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .glass-card:hover {
-            border-color: rgba(197, 160, 89, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(197, 160, 89, 0.1);
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-light);
         }
 
-        /* Gold Gradient Text */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #F5E6C8 0%, #C5A059 50%, #9A7736 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo-symbol {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(197,160,89,0.1), transparent);
         }
 
-        /* Watermark Scale Overlay */
-        .watermark-scale {
-            position: absolute;
-            right: -2rem;
-            bottom: -2rem;
-            width: 420px;
-            height: 420px;
-            opacity: 0.04;
-            pointer-events: none;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.9));
-            z-index: 1;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Accordion transition */
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease-out, opacity 0.3s ease;
-            opacity: 0;
+        .logo-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            text-transform: uppercase;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            opacity: 1;
+        .logo-sub {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
         }
 
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-            color: #C5A059;
-        }
-    </style>
-</head>
-<body class="bg-piano text-gray-300 font-sans antialiased selection:bg-gold-500 selection:text-black min-h-screen flex flex-col relative overflow-x-hidden">
-
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-gold-500/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-black font-serif font-bold text-xl shadow-lg shadow-gold-500/20 group-hover:scale-105 transition-transform">
-                    NR
-                </div>
-                <div>
-                    <span class="font-serif font-bold text-xl tracking-wider text-white block uppercase leading-none">Nadine Reis</span>
-                    <span class="text-xs text-gold-500 tracking-widest font-medium uppercase mt-1 block">Advocacia • OAB/MG 254.893</span>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#inicio" class="text-gray-300 hover:text-gold-400 transition-colors">Início</a>
-                <a href="#sobre" class="text-gray-300 hover:text-gold-400 transition-colors">Sobre</a>
-                <a href="#areas" class="text-gray-300 hover:text-gold-400 transition-colors">Áreas de Atuação</a>
-                <a href="#depoimentos" class="text-gray-300 hover:text-gold-400 transition-colors">Depoimentos</a>
-                <a href="#faq" class="text-gray-300 hover:text-gold-400 transition-colors">Dúvidas</a>
-                <a href="#contato" class="text-gray-300 hover:text-gold-400 transition-colors">Contato</a>
-            </nav>
-
-            <!-- CTA Header Button -->
-            <a href="https://wa.me/5531999999999" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-medium px-5 py-2.5 rounded-lg text-sm shadow-lg shadow-emerald-900/30 transition-all hover:scale-105">
-                <i class="fa-brands me-1 text-lg"></i>
-                <span>Falar no WhatsApp</span>
-            </a>
-
-            <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-gold-400 p-2" aria-label="Abrir Menu">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-b border-gold-500/20 px-4 pt-2 pb-6 space-y-3">
-            <a href="#inicio" class="block py-2 text-gray-300 hover:text-gold-400">Início</a>
-            <a href="#sobre" class="block py-2 text-gray-300 hover:text-gold-400">Sobre</a>
-            <a href="#areas" class="block py-2 text-gray-300 hover:text-gold-400">Áreas de Atuação</a>
-            <a href="#depoimentos" class="block py-2 text-gray-300 hover:text-gold-400">Depoimentos</a>
-            <a href="#faq" class="block py-2 text-gray-300 hover:text-gold-400">Dúvidas Frequentes</a>
-            <a href="#contato" class="block py-2 text-gray-300 hover:text-gold-400">Contato</a>
-            <a href="https://wa.me/5531999999999" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 text-white font-medium py-3 rounded-lg mt-4">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span>Atendimento Rápido WhatsApp</span>
-            </a>
-        </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section id="inicio" class="relative py-20 lg:py-32 overflow-hidden border-b border-white/5">
-        <!-- Background Scale Watermark (Black Piano Style) -->
-        <svg class="watermark-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M12 3v18M3 7h18M5 7l-3 7h6L5 7zm14 0l-3 7h6l-3-7zM8 21h8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Hero Content -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-gold-500/30 text-gold-400 text-xs tracking-wider uppercase font-semibold">
-                        <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
-                        Advocacia de Excelência em Belo Horizonte
-                    </div>
-
-                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white">
-                        Atuação jurídica personalizada e com <span class="text-gold-gradient">foco em resultados.</span>
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-gray-400 max-w-2xl leading-relaxed">
-                        Defesa estratégica, ética e ágil para proteger seus direitos e patrimônio. Soluções jurídicas sob medida nas esferas Cível, de Família, Trabalhista e do Consumidor.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <a href="https://wa.me/5531999999999" target="_blank" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-semibold px-8 py-4 rounded-lg shadow-lg shadow-gold-500/20 transition-all hover:scale-105">
-                            <i class="fa-brands fa-whatsapp text-xl"></i>
-                            <span>Agendar Consulta Jurídica</span>
-                        </a>
-                        <a href="#areas" class="inline-flex items-center justify-center gap-2 glass-panel text-white hover:text-gold-400 font-medium px-8 py-4 rounded-lg transition-all border border-white/10 hover:border-gold-500/30">
-                            <span>Ver Áreas de Atuação</span>
-                            <i class="fa-solid fa-arrow-down text-xs"></i>
-                        </a>
-                    </div>
-
-                    <!-- Trust Stats Badge -->
-                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
-                        <div>
-                            <p class="text-2xl font-serif font-bold text-white">100%</p>
-                            <p class="text-xs text-gray-400 mt-1">Dedicação & Ética</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-serif font-bold text-gold-400">OAB/MG</p>
-                            <p class="text-xs text-gray-400 mt-1">Inscrição 254.893</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-serif font-bold text-white">Agilidade</p>
-                            <p class="text-xs text-gray-400 mt-1">Atendimento Direto</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hero Image Showcase -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative mx-auto max-w-md lg:max-w-none">
-                        <!-- Black Piano Frame Effect -->
-                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-gold-500/30 via-transparent to-gold-400/10 blur-xl opacity-70"></div>
-                        <div class="relative rounded-2xl overflow-hidden glass-panel border border-gold-500/30 shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Dra. Nadine Reis" class="w-full h-[480px] object-cover object-top filter brightness-95 contrast-105">
-                            
-                            <!-- Overlay Badge -->
-                            <div class="absolute bottom-4 left-4 right-4 glass-panel p-4 rounded-xl border border-white/10 backdrop-blur-md">
-                                <p class="font-serif text-white font-semibold text-base">Dra. Nadine Reis</p>
-                                <p class="text-xs text-gold-400">Advogada Especialista • OAB/MG 254.893</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SOBRE A ADVOGADA -->
-    <section id="sobre" class="py-20 relative bg-dark-800/50 border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-5 order-2 lg:order-1">
-                    <div class="relative rounded-xl overflow-hidden glass-panel border border-white/10 p-2">
-                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop" alt="Escritório de Advocacia" class="w-full h-80 object-cover rounded-lg">
-                        <div class="p-6">
-                            <blockquote class="text-sm italic text-gray-300 border-l-2 border-gold-500 pl-4">
-                                "A advocacia não é apenas a aplicação da lei, mas o compromisso incansável de garantir que a justiça se faça presente em cada história e em cada direito resguardado."
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
-                    <div class="inline-block text-xs font-semibold text-gold-500 uppercase tracking-widest">Sobre o Escritório</div>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
-                        Compromisso com a Justiça, Atendimento Humanizado e Estratégia
-                    </h2>
-
-                    <p class="text-gray-400 leading-relaxed">
-                        A <strong class="text-white">Dra. Nadine Reis (OAB/MG 254.893)</strong> atua com foco na prestação de serviços jurídicos de alta performance, aliando o rigor técnico à modernidade necessária para solucionar litígios de forma célere e segura.
-                    </p>
-
-                    <p class="text-gray-400 leading-relaxed">
-                        Com atendimento pautado pela transparência e comunicação clara, o escritório oferece assessoria tanto na prevenção de conflitos quanto na representação contenciosa perante os tribunais, garantindo que o cliente acompanhe cada etapa de seu processo com total clareza.
-                    </p>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                        <div class="glass-card p-4 rounded-lg flex items-start gap-3">
-                            <i class="fa-solid fa-scale-balanced text-gold-500 text-xl mt-1"></i>
-                            <div>
-                                <h4 class="text-white font-semibold text-sm">Defesa Personalizada</h4>
-                                <p class="text-xs text-gray-400 mt-1">Análise detalhada de cada caso de acordo com sua particularidade.</p>
-                            </div>
-                        </div>
-                        <div class="glass-card p-4 rounded-lg flex items-start gap-3">
-                            <i class="fa-solid fa-shield-halved text-gold-500 text-xl mt-1"></i>
-                            <div>
-                                <h4 class="text-white font-semibold text-sm">Transparência Total</h4>
-                                <p class="text-xs text-gray-400 mt-1">Informações objetivas e relatórios frequentes do processo.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ÁREAS DE ATUAÇÃO -->
-    <section id="areas" class="py-20 relative border-b border-white/5">
-        <!-- Scale Watermark -->
-        <svg class="watermark-scale" style="left:-2rem; right:auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M12 3v18M3 7h18M5 7l-3 7h6L5 7zm14 0l-3 7h6l-3-7zM8 21h8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-semibold text-gold-500 uppercase tracking-widest">Especialidades</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Áreas de Atuação Jurídica</h2>
-                <p class="text-gray-400">Soluções jurídicas inteligentes e sob medida para proteger seus direitos e negócios.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Area 1: Direito Civil -->
-                <div class="glass-card p-8 rounded-xl relative group">
-                    <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                        <i class="fa-solid fa-file-contract text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-white mb-3">Direito Civil e Contratos</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Elaboração e análise de contratos, indenizações por danos morais e materiais, cobranças, execuções e disputas patrimoniais.
-                    </p>
-                    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20orientação%20em%20Direito%20Civil." target="_blank" class="text-xs text-gold-400 font-semibold uppercase tracking-wider flex items-center gap-2 hover:text-gold-300">
-                        Consultar Especialista <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-
-                <!-- Area 2: Direito de Família e Sucessões -->
-                <div class="glass-card p-8 rounded-xl relative group">
-                    <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                        <i class="fa-solid fa-users text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-white mb-3">Família e Sucessões</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Divórcios consensuais e litigosos, guarda, pensão alimentícia, inventários, partilha de bens e planejamento sucessório.
-                    </p>
-                    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20orientação%20em%20Direito%20de%20Família." target="_blank" class="text-xs text-gold-400 font-semibold uppercase tracking-wider flex items-center gap-2 hover:text-gold-300">
-                        Consultar Especialista <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-
-                <!-- Area 3: Direito Trabalhista -->
-                <div class="glass-card p-8 rounded-xl relative group">
-                    <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                        <i class="fa-solid fa-briefcase text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-white mb-3">Direito Trabalhista</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Defesa dos direitos do trabalhador e consultoria preventiva para empresas: rescisão, horas extras, insalubridade e acidentes de trabalho.
-                    </p>
-                    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20orientação%20em%20Direito%20Trabalhista." target="_blank" class="text-xs text-gold-400 font-semibold uppercase tracking-wider flex items-center gap-2 hover:text-gold-300">
-                        Consultar Especialista <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-
-                <!-- Area 4: Direito do Consumidor -->
-                <div class="glass-card p-8 rounded-xl relative group">
-                    <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                        <i class="fa-solid fa-cart-shopping text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-white mb-3">Direito do Consumidor</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Ações contra abusos de empresas, bancos, companhias aéreas, planos de saúde, inclusão indevida no SPC/Serasa e fraudes.
-                    </p>
-                    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20orientação%20em%20Direito%20do%20Consumidor." target="_blank" class="text-xs text-gold-400 font-semibold uppercase tracking-wider flex items-center gap-2 hover:text-gold-300">
-                        Consultar Especialista <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-
-                <!-- Area 5: Consultoria Preventiva -->
-                <div class="glass-card p-8 rounded-xl relative group">
-                    <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                        <i class="fa-solid fa-gavel text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-white mb-3">Advocacia Preventiva</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Assessoria jurídica extrajudicial para prevenção de riscos, adequação regulatória e mediação de conflitos sem a necessidade de processos longos.
-                    </p>
-                    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20orientação%20em%20Consultoria%20Preventiva." target="_blank" class="text-xs text-gold-400 font-semibold uppercase tracking-wider flex items-center gap-2 hover:text-gold-300">
-                        Consultar Especialista <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-
-                <!-- Area 6: Regularização Imobiliária -->
-                <div class="glass-card p-8 rounded-xl relative group">
-                    <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                        <i class="fa-solid fa-building-user text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-white mb-3">Direito Imobiliário</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Usucapião, regularização de imóveis, contratos de compra e venda, despejos e litígios possessórios.
-                    </p>
-                    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20orientação%20em%20Direito%20Imobiliário." target="_blank" class="text-xs text-gold-400 font-semibold uppercase tracking-wider flex items-center gap-2 hover:text-gold-300">
-                        Consultar Especialista <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- DEPOIMENTOS -->
-    <section id="depoimentos" class="py-20 bg-dark-800/40 relative border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-semibold text-gold-500 uppercase tracking-widest">Opinião de Clientes</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Reconhecimento & Confiança</h2>
-                <p class="text-gray-400">A satisfação dos nossos clientes é o maior reflexo do nosso trabalho e dedicação.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-gold-400 text-sm gap-1 mb-4">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-gray-300 text-sm italic leading-relaxed mb-6">
-                            "Excelente profissional! A Dra. Nadine conduziu meu processo de inventário com extremo cuidado e agilidade. Sempre esclareceu minhas dúvidas e me passou muita confiança durante todo o procedimento."
-                        </p>
-                    </div>
-                    <div class="border-t border-white/5 pt-4">
-                        <p class="text-white font-medium text-sm">Mariana A. S.</p>
-                        <p class="text-xs text-gray-500">Cliente - Direito de Família</p>
-                    </div>
-                </div>
-
-                <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-gold-400 text-sm gap-1 mb-4">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-gray-300 text-sm italic leading-relaxed mb-6">
-                            "Atendimento muito humanizado e ágil. Tive um problema sério com uma cobrança indevida de banco e a Dra. Nadine resolveu rapidamente com resultado positivo."
-                        </p>
-                    </div>
-                    <div class="border-t border-white/5 pt-4">
-                        <p class="text-white font-medium text-sm">Carlos Eduardo R.</p>
-                        <p class="text-xs text-gray-500">Cliente - Direito do Consumidor</p>
-                    </div>
-                </div>
-
-                <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-gold-400 text-sm gap-1 mb-4">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-gray-300 text-sm italic leading-relaxed mb-6">
-                            "Profissionalismo impecável! Elaborou os contratos da minha empresa com total rigor. Recomendo de olhos fechados para qualquer demanda jurídica."
-                        </p>
-                    </div>
-                    <div class="border-t border-white/5 pt-4">
-                        <p class="text-white font-medium text-sm">Roberto P. F.</p>
-                        <p class="text-xs text-gray-500">Empresário - Consultoria Contratual</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION (PERGUNTAS FREQUENTES REAIS) -->
-    <section id="faq" class="py-20 relative border-b border-white/5">
-        <!-- Scale Watermark (Right side) -->
-        <svg class="watermark-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M12 3v18M3 7h18M5 7l-3 7h6L5 7zm14 0l-3 7h6l-3-7zM8 21h8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 space-y-4">
-                <span class="text-xs font-semibold text-gold-500 uppercase tracking-widest">Esclareça suas Dúvidas</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Perguntas Frequentes</h2>
-                <p class="text-gray-400">Respostas diretas para as dúvidas mais comuns sobre serviços jurídicos.</p>
-            </div>
-
-            <!-- Accordion Container -->
-            <div class="space-y-4" id="faq-accordion">
-                
-                <!-- FAQ Item 1 -->
-                <div class="faq-item glass-card rounded-xl p-6 cursor-pointer border border-white/5" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between gap-4">
-                        <h3 class="font-serif text-base sm:text-lg font-semibold text-white">Como funciona o atendimento inicial para o meu caso?</h3>
-                        <i class="fa-solid fa-chevron-down faq-icon text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer mt-4 text-sm text-gray-400 border-t border-white/5 pt-3 leading-relaxed">
-                        O atendimento inicial pode ser realizado presencialmente em Belo Horizonte ou de forma 100% online (via WhatsApp ou videochamada). Nessa primeira consulta, analisamos a documentação, compreendemos os detalhes do caso e traçamos a melhor estratégia jurídica preventiva ou judicial.
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="faq-item glass-card rounded-xl p-6 cursor-pointer border border-white/5" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between gap-4">
-                        <h3 class="font-serif text-base sm:text-lg font-semibold text-white">Quais documentos preciso separar para dar entrada no processo?</h3>
-                        <i class="fa-solid fa-chevron-down faq-icon text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer mt-4 text-sm text-gray-400 border-t border-white/5 pt-3 leading-relaxed">
-                        De forma geral, são necessários: documento de identidade (RG/CPF ou CNH), comprovante de residência atualizado e os documentos específicos relativos à sua causa (como contratos, comprovantes de pagamento, trocas de mensagens, certidões ou holerites). Fornecemos a lista exata logo após a consulta inicial.
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="faq-item glass-card rounded-xl p-6 cursor-pointer border border-white/5" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between gap-4">
-                        <h3 class="font-serif text-base sm:text-lg font-semibold text-white">É possível realizar um divórcio de forma rápida e amigável?</h3>
-                        <i class="fa-solid fa-chevron-down faq-icon text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer mt-4 text-sm text-gray-400 border-t border-white/5 pt-3 leading-relaxed">
-                        Sim! Caso o casal esteja em acordo quanto à partilha e não haja filhos menores ou incapazes (ou havendo, que as questões de guarda e alimentos já estejam pré-alinhadas), o divórcio consensual pode ser realizado de forma rápida no Cartório de Notas ou via homologação judicial ágil.
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="faq-item glass-card rounded-xl p-6 cursor-pointer border border-white/5" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between gap-4">
-                        <h3 class="font-serif text-base sm:text-lg font-semibold text-white">Como acompanho o andamento da minha ação judicial?</h3>
-                        <i class="fa-solid fa-chevron-down faq-icon text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer mt-4 text-sm text-gray-400 border-t border-white/5 pt-3 leading-relaxed">
-                        Nosso escritório mantém o compromisso de informar o cliente periodicamente a cada movimentação relevante. Além disso, disponibilizamos os números de processo para que você possa acompanhar diretamente nos sistemas dos Tribunais (PJe).
-                    </div>
-                </div>
-
-                <!-- FAQ Item 5 -->
-                <div class="faq-item glass-card rounded-xl p-6 cursor-pointer border border-white/5" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between gap-4">
-                        <h3 class="font-serif text-base sm:text-lg font-semibold text-white">Quanto tempo costuma demorar uma ação de cobrança ou indenização?</h3>
-                        <i class="fa-solid fa-chevron-down faq-icon text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer mt-4 text-sm text-gray-400 border-t border-white/5 pt-3 leading-relaxed">
-                        O tempo varia dependendo da complexidade e da comarca do Judiciário. Contudo, sempre buscamos primeiro a via extrajudicial de acordo, que costuma resolver o problema em poucas semanas. Caso vá para o judiciário, informamos prazos médios atualizados no momento da contratação.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTATO / LOCALIZAÇÃO -->
-    <section id="contato" class="py-20 relative bg-dark-800/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                
-                <!-- Informações de Contato -->
-                <div class="lg:col-span-5 space-y-8">
-                    <div>
-                        <span class="text-xs font-semibold text-gold-500 uppercase tracking-widest">Fale Conosco</span>
-                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Agende seu Atendimento</h2>
-                        <p class="text-gray-400 mt-4 text-sm leading-relaxed">
-                            Estamos prontos para ouvir seu caso e oferecer a orientação jurídica ideal com sigilo e eficiência.
-                        </p>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 flex-shrink-0">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Endereço Profissional</p>
-                                <p class="text-gray-400 text-sm mt-0.5">Belo Horizonte - MG (Atendimento presencial com hora marcada e online para todo o Brasil)</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 flex-shrink-0">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Telefone / WhatsApp</p>
-                                <p class="text-gray-400 text-sm mt-0.5">(31) 99999-9999</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 flex-shrink-0">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">E-mail de Contato</p>
-                                <p class="text-gray-400 text-sm mt-0.5">contato@nadinereis.adv.br</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 flex-shrink-0">
-                                <i class="fa-solid fa-id-card"></i>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Registro Profissional</p>
-                                <p class="text-gold-400 text-sm font-medium mt-0.5">OAB/MG 254.893</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formulário de Mensagem -->
-                <div class="lg:col-span-7">
-                    <div class="glass-panel p-8 rounded-2xl border border-white/10 shadow-2xl">
-                        <h3 class="font-serif text-2xl font-bold text-white mb-6">Envie uma Mensagem Direta</h3>
-                        
-                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-300 mb-1">Nome Completo</label>
-                                    <input type="text" required placeholder="Seu nome" class="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-300 mb-1">Telefone/WhatsApp</label>
-                                    <input type="tel" required placeholder="(31) 99999-9999" class="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-300 mb-1">E-mail</label>
-                                    <input type="email" required placeholder="seuemail@exemplo.com" class="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-300 mb-1">Assunto / Área</label>
-                                    <select class="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
-                                        <option>Direito Civil / Contratos</option>
-                                        <option>Direito de Família / Inventário</option>
-                                        <option>Direito Trabalhista</option>
-                                        <option>Direito do Consumidor</option>
-                                        <option>Outros assuntos</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-medium text-gray-300 mb-1">Resumo da sua Dúvida</label>
-                                <textarea rows="4" required placeholder="Descreva brevemente a sua situação..." class="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors"></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-semibold py-3.5 rounded-lg transition-all shadow-lg shadow-gold-500/20">
-                                Enviar Mensagem via WhatsApp
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER INSTITUCIONAL -->
-    <footer class="bg-dark-900 border-t border-white/10 pt-16 pb-12 text-sm text-gray-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/5">
-                
-                <div class="space-y-4 md:col-span-1">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-black font-serif font-bold text-sm">
-                            NR
-                        </div>
-                        <span class="font-serif font-bold text-white tracking-wider uppercase">Nadine Reis</span>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Advocacia pautada na ética, transparência e busca contínua por resultados eficazes para os nossos clientes.
-                    </p>
-                    <p class="text-xs text-gold-500 font-semibold">OAB/MG 254.893</p>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-serif font-semibold mb-4">Navegação</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#inicio" class="hover:text-gold-400 transition-colors">Início</a></li>
-                        <li><a href="#sobre" class="hover:text-gold-400 transition-colors">Sobre Dra. Nadine</a></li>
-                        <li><a href="#areas" class="hover:text-gold-400 transition-colors">Áreas de Atuação</a></li>
-                        <li><a href="#faq" class="hover:text-gold-400 transition-colors">Dúvidas Frequentes</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-serif font-semibold mb-4">Áreas Atendidas</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li>Direito Civil & Contratos</li>
-                        <li>Família e Sucessões</li>
-                        <li>Direito Trabalhista</li>
-                        <li>Direito do Consumidor</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-serif font-semibold mb-4">Redes Sociais & Contato</h4>
-                    <div class="flex gap-3 mb-4">
-                        <a href="#" class="w-9 h-9 rounded-lg glass-panel flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-9 h-9 rounded-lg glass-panel flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://wa.me/5531999999999" target="_blank" class="w-9 h-9 rounded-lg glass-panel flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                    </div>
-                    <p class="text-xs text-gray-500">Belo Horizonte - Minas Gerais</p>
-                </div>
-
-            </div>
-
-            <!-- Bottom Copyright & Legal Disclaimer -->
-            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-                <p>© 2026 Nadine Reis Advocacia (OAB/MG 254.893). Todos os direitos reservados.</p>
-                <p class="text-center md:text-right">Este site atende aos provimentos do Código de Ética e Disciplina da OAB.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- FLOATING WHATSAPP BUTTON -->
-    <a href="https://wa.me/5531999999999" target="_blank" aria-label="Atendimento no WhatsApp" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-400 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-900/50 hover:scale-110 transition-transform border border-emerald-300/30">
-        <i class="fa-brands fa-whatsapp text-3xl"></i>
-    </a>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // Toggle Mobile Navigation
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // FAQ Accordion Toggle
-        function toggleFaq(element) {
-            const allFaqs = document.querySelectorAll('.faq-item');
-            
-            allFaqs.forEach(item => {
-                if (item !== element) {
-                    item.classList.remove('active');
-                }
-            });
-
-            element.classList.toggle('active');
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
         }
 
-        // Contact Form Handling (Simulated WhatsApp Redirect)
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const inputs = e.target.querySelectorAll('input, textarea, select');
-            const nome = inputs[0].value;
-            const tel = inputs[1].value;
-            const email = inputs[2].value;
-            const assunto = inputs[3].value;
-            const mensagem = inputs[4].value;
-
-            const text = `Olá, Dra. Nadine Reis!%0A%0AMeu nome é *${nome}*%0ATelefone: ${tel}%0AE-mail: ${email}%0AAssunto: ${assunto}%0AMensagem: ${mensagem}`;
-            window.open(`https://wa.me/5531999999999?text=${text}`, '_blank');
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
-    </script>
-</body>
-</html>
+
+        nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        .btn-header {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
